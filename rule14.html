@@ -6,12 +6,38 @@
   <title>ACT-R14 Label in Name Test</title>
 </head>
 <body>
-  <h1>ACT-R14 / WCAG 2.5.3 Failure Test</h1>
+  <h1>ACT-R14 / WCAG 2.5.3 Label in Name Test</h1>
 
-  <button type="button" aria-label="Find train services">Search</button>
+  <h2>Intentional Failures</h2>
 
-  <button type="button" aria-label="Start job application">Apply Now</button>
+  <button type="button" aria-label="Find train services">
+    Search
+  </button>
 
-  <a href="#contact" aria-label="Send us a message">Contact Us</a>
+  <button type="button" aria-label="Start job application">
+    Apply Now
+  </button>
+
+  <a href="#contact" aria-label="Send us a message">
+    Contact Us
+  </a>
+
+  <h2>Passing Controls</h2>
+
+  <button type="button" aria-label="Search for train services">
+    Search
+  </button>
+
+  <button type="button" aria-label="Apply Now for this job">
+    Apply Now
+  </button>
+
+  <a href="#contact" aria-label="Contact Us for support">
+    Contact Us
+  </a>
+
+  <section id="contact">
+    <p>Contact test destination.</p>
+  </section>
 </body>
 </html>
