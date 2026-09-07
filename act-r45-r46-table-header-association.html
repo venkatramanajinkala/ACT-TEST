@@ -3,128 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ACT-R45 and ACT-R46 Table Header Association Test</title>
+  <title>ACT-R45 and ACT-R46 Table Test</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 24px;
       line-height: 1.5;
-      margin: 2rem;
     }
 
     table {
       border-collapse: collapse;
-      width: 100%;
-      max-width: 850px;
-      margin: 1rem 0 2rem;
-    }
-
-    caption {
-      font-weight: bold;
-      text-align: left;
-      margin-bottom: 0.5rem;
+      width: 650px;
+      max-width: 100%;
+      margin-bottom: 32px;
     }
 
     th,
     td {
-      border: 1px solid #333;
-      padding: 0.75rem;
+      border: 1px solid #000;
+      padding: 10px;
       text-align: left;
     }
 
     th {
-      background-color: #e8eef7;
-    }
-
-    .fail-heading {
-      color: #9b111e;
-    }
-
-    .pass-heading {
-      color: #087830;
-    }
-
-    .note {
-      max-width: 850px;
-      padding: 1rem;
-      background: #f5f5f5;
-      border-left: 4px solid #555;
+      background: #e6e6e6;
     }
   </style>
 </head>
 
 <body>
-  <h1>ACT-R45 and ACT-R46 Table Header Association Test</h1>
+  <h1>ACT-R45 and ACT-R46 Table Header Test</h1>
 
-  <p class="note">
-    This page contains intentional failing and passing data-table examples.
-    Each table has a visible caption only for test clarity.
-  </p>
+  <h2>Intentional Failures</h2>
 
-  <h2 class="fail-heading">Intentional Failures</h2>
-
-  <!-- FAIL 1:
-       Column labels use td instead of th.
-       There are no programmatic column headers.
-       Expected: ACT-R46 failure for data cells. -->
-  <h3>Fail 1: Column labels are data cells instead of header cells</h3>
+  <!-- ACT-R45 FAILURE:
+       th elements are present, but there are no individual data cells
+       under "Issue Type" or "Status".
+       colspan="2" makes one cell cover both columns. -->
+  <h3>ACT-R45 Failure: Headers have no associated data cells</h3>
 
   <table>
-    <caption>Failing table: Quarterly sales</caption>
-    <tr>
-      <td>Product</td>
-      <td>Quarter 1</td>
-      <td>Quarter 2</td>
-    </tr>
-    <tr>
-      <td>Laptop</td>
-      <td>120</td>
-      <td>150</td>
-    </tr>
-    <tr>
-      <td>Keyboard</td>
-      <td>80</td>
-      <td>95</td>
-    </tr>
-  </table>
-
-  <!-- FAIL 2:
-       th elements exist, but the scope is wrong.
-       "January" and "February" are column headers, but scope=row is used.
-       Expected: Incorrect header/data association. -->
-  <h3>Fail 2: Incorrect scope values on column headers</h3>
-
-  <table>
-    <caption>Failing table: Support tickets by month</caption>
+    <caption>Accessibility issue status</caption>
     <thead>
       <tr>
-        <th scope="row">Team</th>
-        <th scope="row">January</th>
-        <th scope="row">February</th>
+        <th scope="col">Issue Type</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Accessibility QA</td>
-        <td>24</td>
-        <td>18</td>
-      </tr>
-      <tr>
-        <td>Development</td>
-        <td>15</td>
-        <td>11</td>
+        <td colspan="2">No issues found.</td>
       </tr>
     </tbody>
   </table>
 
-  <!-- FAIL 3:
-       A complex table has multiple related headers,
-       but td elements do not use headers associations.
-       Expected: ACT-R46 failure / incomplete header association. -->
-  <h3>Fail 3: Complex table without headers attributes</h3>
+  <!-- ACT-R46 FAILURE 1:
+       Visual headings are incorrectly created with td.
+       Data cells have no programmatic column headers. -->
+  <h3>ACT-R46 Failure 1: No programmatic headers</h3>
 
   <table>
-    <caption>Failing table: Accessibility defects by quarter</caption>
+    <caption>Employee training status</caption>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>Course</td>
+        <td>Status</td>
+      </tr>
+      <tr>
+        <td>Arun</td>
+        <td>WCAG 2.2</td>
+        <td>Completed</td>
+      </tr>
+      <tr>
+        <td>Priya</td>
+        <td>PDF Accessibility</td>
+        <td>In Progress</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ACT-R46 FAILURE 2:
+       A complex table has multiple levels of column headers,
+       but td cells do not use the headers attribute to identify
+       their related group header and sub-column header. -->
+  <h3>ACT-R46 Failure 2: Complex table without header associations</h3>
+
+  <table>
+    <caption>Accessibility issues by quarter</caption>
     <thead>
       <tr>
         <th rowspan="2">Team</th>
@@ -141,170 +108,48 @@
     <tbody>
       <tr>
         <th>Web QA</th>
-        <td>12</td>
-        <td>30</td>
-        <td>8</td>
-        <td>35</td>
+        <td>10</td>
+        <td>15</td>
+        <td>6</td>
+        <td>20</td>
       </tr>
       <tr>
         <th>PDF QA</th>
         <td>7</td>
-        <td>20</td>
-        <td>4</td>
-        <td>26</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- FAIL 4:
-       Header cells exist but do not head any data cells.
-       Expected: ACT-R45 failure because the th elements
-       "Status" and "Owner" are not associated with td cells. -->
-  <h3>Fail 4: Header cells with no associated data cells</h3>
-
-  <table>
-    <caption>Failing table: Empty issue summary</caption>
-    <thead>
-      <tr>
-        <th scope="col">Status</th>
-        <th scope="col">Owner</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td colspan="2">No issues are currently available.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 class="pass-heading">Passing Tables</h2>
-
-  <!-- PASS 1:
-       Simple table with correct column headers.
-       Each td is under an appropriate th scope=col. -->
-  <h3>Pass 1: Simple table with column headers</h3>
-
-  <table>
-    <caption>Passing table: Quarterly sales</caption>
-    <thead>
-      <tr>
-        <th scope="col">Product</th>
-        <th scope="col">Quarter 1</th>
-        <th scope="col">Quarter 2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Laptop</td>
-        <td>120</td>
-        <td>150</td>
-      </tr>
-      <tr>
-        <td>Keyboard</td>
-        <td>80</td>
-        <td>95</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- PASS 2:
-       Table with both row and column headers.
-       scope=col is used for column headings.
-       scope=row is used for row headings. -->
-  <h3>Pass 2: Table with row and column headers</h3>
-
-  <table>
-    <caption>Passing table: Support tickets by month</caption>
-    <thead>
-      <tr>
-        <th scope="col">Team</th>
-        <th scope="col">January</th>
-        <th scope="col">February</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Accessibility QA</th>
-        <td>24</td>
-        <td>18</td>
-      </tr>
-      <tr>
-        <th scope="row">Development</th>
-        <td>15</td>
         <td>11</td>
+        <td>4</td>
+        <td>16</td>
       </tr>
     </tbody>
   </table>
 
-  <!-- PASS 3:
-       Complex table.
-       Every th has a unique id.
-       Every td lists all relevant header ids in headers.
-       Expected: Pass for explicit table header associations. -->
-  <h3>Pass 3: Complex table with id and headers attributes</h3>
+  <h2>Passing Table</h2>
+
+  <!-- PASS:
+       Column headers use scope="col".
+       Row headers use scope="row".
+       Each td has clear header associations. -->
+  <h3>Pass: Table with correct row and column headers</h3>
 
   <table>
-    <caption>Passing table: Accessibility defects by quarter</caption>
+    <caption>Accessibility testing summary</caption>
     <thead>
       <tr>
-        <th id="team-header" rowspan="2">Team</th>
-        <th id="q1-header" colspan="2">Quarter 1</th>
-        <th id="q2-header" colspan="2">Quarter 2</th>
-      </tr>
-      <tr>
-        <th id="q1-open">Open</th>
-        <th id="q1-closed">Closed</th>
-        <th id="q2-open">Open</th>
-        <th id="q2-closed">Closed</th>
+        <th scope="col">Tester</th>
+        <th scope="col">Issues Found</th>
+        <th scope="col">Issues Fixed</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th id="web-qa" scope="row">Web QA</th>
-        <td headers="web-qa q1-header q1-open">12</td>
-        <td headers="web-qa q1-header q1-closed">30</td>
-        <td headers="web-qa q2-header q2-open">8</td>
-        <td headers="web-qa q2-header q2-closed">35</td>
+        <th scope="row">Surbhi</th>
+        <td>10</td>
+        <td>8</td>
       </tr>
       <tr>
-        <th id="pdf-qa" scope="row">PDF QA</th>
-        <td headers="pdf-qa q1-header q1-open">7</td>
-        <td headers="pdf-qa q1-header q1-closed">20</td>
-        <td headers="pdf-qa q2-header q2-open">4</td>
-        <td headers="pdf-qa q2-header q2-closed">26</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- PASS 4:
-       A simple summary table.
-       Column header and row headers are correctly scoped. -->
-  <h3>Pass 4: Simple status-summary table</h3>
-
-  <table>
-    <caption>Passing table: Accessibility issue status</caption>
-    <thead>
-      <tr>
-        <th scope="col">Issue type</th>
-        <th scope="col">Open issues</th>
-        <th scope="col">Resolved issues</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Missing alt text</th>
-        <td>3</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <th scope="row">Colour contrast</th>
+        <th scope="row">Arun</th>
+        <td>6</td>
         <td>5</td>
-        <td>12</td>
-      </tr>
-      <tr>
-        <th scope="row">Keyboard access</th>
-        <td>2</td>
-        <td>9</td>
       </tr>
     </tbody>
   </table>
