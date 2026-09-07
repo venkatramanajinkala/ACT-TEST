@@ -38,33 +38,26 @@
   <h2>Intentional Failures</h2>
 
   <!-- ACT-R45 FAILURE:
-       th elements are present, but there are no individual data cells
-       under "Issue Type" or "Status".
-       colspan="2" makes one cell cover both columns. -->
-       <h3>ACT-R45 Failure: Header is not referenced by a data cell</h3>
+       "Status" does not have an assigned data cell. -->
+  <h3>ACT-R45 Failure: Header has no assigned data cell</h3>
 
-       <table>
-         <caption>Accessibility issue owner summary</caption>
-         <thead>
-           <tr>
-             <th id="issue-type">Issue Type</th>
-             <th id="issue-status">Status</th>
-             <th id="issue-owner">Owner</th>
-           </tr>
-         </thead>
-       
-         <tbody>
-           <tr>
-             <td headers="issue-type">Colour contrast</td>
-             <td headers="issue-status">Open</td>
-             <td>Arun</td>
-           </tr>
-         </tbody>
-       </table>
+  <table>
+    <caption>ACT-R45 test: incomplete issue table</caption>
+    <thead>
+      <tr>
+        <th scope="col">Issue Type</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Colour contrast</td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- ACT-R46 FAILURE 1:
-       Visual headings are incorrectly created with td.
-       Data cells have no programmatic column headers. -->
+       Visual column labels are td elements, not th elements. -->
   <h3>ACT-R46 Failure 1: No programmatic headers</h3>
 
   <table>
@@ -89,40 +82,21 @@
   </table>
 
   <!-- ACT-R46 FAILURE 2:
-       A complex table has multiple levels of column headers,
-       but td cells do not use the headers attribute to identify
-       their related group header and sub-column header. -->
-  <h3>ACT-R46 Failure 2: Complex table without header associations</h3>
+       The data cell references an ID that does not exist. -->
+  <h3>ACT-R46 Failure 2: Invalid header reference</h3>
 
   <table>
-    <caption>Accessibility issues by quarter</caption>
+    <caption>Accessibility issue status</caption>
     <thead>
       <tr>
-        <th rowspan="2">Team</th>
-        <th colspan="2">Quarter 1</th>
-        <th colspan="2">Quarter 2</th>
-      </tr>
-      <tr>
-        <th>Open</th>
-        <th>Closed</th>
-        <th>Open</th>
-        <th>Closed</th>
+        <th id="issue-name">Issue Name</th>
+        <th id="issue-state">Status</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>Web QA</th>
-        <td>10</td>
-        <td>15</td>
-        <td>6</td>
-        <td>20</td>
-      </tr>
-      <tr>
-        <th>PDF QA</th>
-        <td>7</td>
-        <td>11</td>
-        <td>4</td>
-        <td>16</td>
+        <td headers="missing-header">Keyboard focus</td>
+        <td headers="issue-state">Open</td>
       </tr>
     </tbody>
   </table>
@@ -130,10 +104,8 @@
   <h2>Passing Table</h2>
 
   <!-- PASS:
-       Column headers use scope="col".
-       Row headers use scope="row".
-       Each td has clear header associations. -->
-  <h3>Pass: Table with correct row and column headers</h3>
+       Correct column headers and row headers. -->
+  <h3>Pass: Correct row and column header associations</h3>
 
   <table>
     <caption>Accessibility testing summary</caption>
