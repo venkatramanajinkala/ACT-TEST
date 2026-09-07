@@ -41,22 +41,26 @@
        th elements are present, but there are no individual data cells
        under "Issue Type" or "Status".
        colspan="2" makes one cell cover both columns. -->
-  <h3>ACT-R45 Failure: Headers have no associated data cells</h3>
+       <h3>ACT-R45 Failure: Header is not referenced by a data cell</h3>
 
-  <table>
-    <caption>Accessibility issue status</caption>
-    <thead>
-      <tr>
-        <th scope="col">Issue Type</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td colspan="2">No issues found.</td>
-      </tr>
-    </tbody>
-  </table>
+       <table>
+         <caption>Accessibility issue owner summary</caption>
+         <thead>
+           <tr>
+             <th id="issue-type">Issue Type</th>
+             <th id="issue-status">Status</th>
+             <th id="issue-owner">Owner</th>
+           </tr>
+         </thead>
+       
+         <tbody>
+           <tr>
+             <td headers="issue-type">Colour contrast</td>
+             <td headers="issue-status">Open</td>
+             <td>Arun</td>
+           </tr>
+         </tbody>
+       </table>
 
   <!-- ACT-R46 FAILURE 1:
        Visual headings are incorrectly created with td.
