@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ACT-R45 and ACT-R46 Table Test</title>
+  <title>ACT-R45 and ACT-R46 Test Tables</title>
 
   <style>
     body {
@@ -27,123 +27,101 @@
     }
 
     th {
-      background: #e6e6e6;
+      background-color: #e6e6e6;
     }
   </style>
 </head>
 
 <body>
-  <h1>ACT-R45 and ACT-R46 Table Header Test</h1>
+  <h1>ACT-R45 and ACT-R46 Table Test</h1>
 
-  <!-- =========================================================
-       TABLE 1: ACT-R45 FAILURE
-       Expected: 2 ACT-R45 issues
-       ========================================================= -->
-  <h2>ACT-R45 Failure Table</h2>
+  <h2>ACT-R45 Failure</h2>
 
+  <!-- ACT-R45 FAILURE:
+       The data cell references "missing-header".
+       No element with id="missing-header" exists in this table. -->
   <table>
-    <caption>Invalid header references</caption>
+    <caption>Invalid headers attribute reference</caption>
     <thead>
       <tr>
-        <th id="issue-name">Issue Name</th>
+        <th id="issue-type">Issue Type</th>
         <th id="issue-status">Status</th>
-        <th id="issue-owner">Owner</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
-        <!-- Failure 1: ID "missing-name-header" does not exist -->
-        <td headers="missing-name-header">Keyboard focus</td>
-
-        <!-- Failure 2: ID "missing-status-header" does not exist -->
-        <td headers="missing-status-header">Open</td>
-
-        <!-- This cell is correctly associated -->
-        <td headers="issue-owner">Arun</td>
+        <td headers="missing-header">Keyboard focus</td>
+        <td headers="issue-status">Open</td>
       </tr>
     </tbody>
   </table>
 
-  <!-- =========================================================
-       TABLE 2: ACT-R45 PASS
-       Expected: 0 ACT-R45 issues
-       ========================================================= -->
-  <h2>ACT-R45 Passing Table</h2>
+  <h2>ACT-R45 Pass</h2>
 
+  <!-- ACT-R45 PASS:
+       Each headers value refers to a real th id
+       in this same table. -->
   <table>
-    <caption>Valid header references</caption>
+    <caption>Valid headers attribute references</caption>
     <thead>
       <tr>
-        <th id="pass-issue-name">Issue Name</th>
+        <th id="pass-issue-type">Issue Type</th>
         <th id="pass-issue-status">Status</th>
-        <th id="pass-issue-owner">Owner</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
-        <td headers="pass-issue-name">Keyboard focus</td>
+        <td headers="pass-issue-type">Keyboard focus</td>
         <td headers="pass-issue-status">Open</td>
-        <td headers="pass-issue-owner">Arun</td>
       </tr>
     </tbody>
   </table>
 
-  <!-- =========================================================
-       TABLE 3: ACT-R46 FAILURE
-       Expected: 2 ACT-R46 issues
-       ========================================================= -->
-  <h2>ACT-R46 Failure Table</h2>
+  <h2>ACT-R46 Failure</h2>
 
+  <!-- ACT-R46 FAILURE:
+       "Owner" is a table header but has no assigned data cell.
+       The body row contains only two td cells. -->
   <table>
-    <caption>Data cells without programmatic headers</caption>
-    <tbody>
-      <tr>
-        <!-- These look like headers but are td elements -->
-        <td>Tester</td>
-        <td>Issues Found</td>
-        <td>Issues Fixed</td>
-      </tr>
-      <tr>
-        <!-- Failure 1 -->
-        <td>Surbhi</td>
-
-        <!-- Failure 2 -->
-        <td>10</td>
-
-        <!-- Included only as normal table data -->
-        <td>8</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- =========================================================
-       TABLE 4: ACT-R46 PASS
-       Expected: 0 ACT-R46 issues
-       ========================================================= -->
-  <h2>ACT-R46 Passing Table</h2>
-
-  <table>
-    <caption>Data cells with valid headers</caption>
+    <caption>Header with no assigned data cell</caption>
     <thead>
       <tr>
-        <th scope="col">Tester</th>
-        <th scope="col">Issues Found</th>
-        <th scope="col">Issues Fixed</th>
+        <th scope="col">Issue Type</th>
+        <th scope="col">Status</th>
+        <th scope="col">Owner</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
-        <th scope="row">Surbhi</th>
-        <td>10</td>
-        <td>8</td>
+        <td>Colour contrast</td>
+        <td>Open</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>ACT-R46 Pass</h2>
+
+  <!-- ACT-R46 PASS:
+       Every th has one or more related data cells. -->
+  <table>
+    <caption>Headers with assigned data cells</caption>
+    <thead>
+      <tr>
+        <th scope="col">Issue Type</th>
+        <th scope="col">Status</th>
+        <th scope="col">Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Colour contrast</td>
+        <td>Open</td>
+        <td>Arun</td>
       </tr>
       <tr>
-        <th scope="row">Arun</th>
-        <td>6</td>
-        <td>5</td>
+        <td>Keyboard focus</td>
+        <td>Fixed</td>
+        <td>Surbhi</td>
       </tr>
     </tbody>
   </table>
