@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,64 +34,89 @@
 </head>
 
 <body>
-  <h1>ACT-R45 and ACT-R46 Table Test</h1>
+
+  <h1>ACT-R45 and ACT-R46 Test Tables</h1>
+
+  <!-- ========================= -->
+  <!-- ACT-R45 FAILURE -->
+  <!-- ========================= -->
 
   <h2>ACT-R45 Failure</h2>
 
-  <!-- ACT-R45 FAILURE:
-       The data cell references "missing-header".
-       No element with id="missing-header" exists in this table. -->
+  <!-- Failure:
+       The headers attribute refers to "wrong-header",
+       but no table header with this ID exists.
+  -->
   <table>
-    <caption>Invalid headers attribute reference</caption>
+    <caption>ACT-R45 Failure</caption>
+
     <thead>
       <tr>
-        <th id="issue-type">Issue Type</th>
-        <th id="issue-status">Status</th>
+        <th id="issue">Issue</th>
+        <th id="status">Status</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
-        <td headers="missing-header">Keyboard focus</td>
-        <td headers="issue-status">Open</td>
+        <td headers="wrong-header">Keyboard focus</td>
+        <td headers="status">Open</td>
       </tr>
     </tbody>
   </table>
+
+
+  <!-- ========================= -->
+  <!-- ACT-R45 PASS -->
+  <!-- ========================= -->
 
   <h2>ACT-R45 Pass</h2>
 
-  <!-- ACT-R45 PASS:
-       Each headers value refers to a real th id
-       in this same table. -->
+  <!-- Pass:
+       Every headers attribute refers to a valid
+       th ID in the same table.
+  -->
   <table>
-    <caption>Valid headers attribute references</caption>
+    <caption>ACT-R45 Pass</caption>
+
     <thead>
       <tr>
-        <th id="pass-issue-type">Issue Type</th>
-        <th id="pass-issue-status">Status</th>
+        <th id="pass-issue">Issue</th>
+        <th id="pass-status">Status</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
-        <td headers="pass-issue-type">Keyboard focus</td>
-        <td headers="pass-issue-status">Open</td>
+        <td headers="pass-issue">Keyboard focus</td>
+        <td headers="pass-status">Open</td>
       </tr>
     </tbody>
   </table>
 
+
+  <!-- ========================= -->
+  <!-- ACT-R46 FAILURE -->
+  <!-- ========================= -->
+
   <h2>ACT-R46 Failure</h2>
 
-  <!-- ACT-R46 FAILURE:
-       "Owner" is a table header but has no assigned data cell.
-       The body row contains only two td cells. -->
+  <!-- Failure:
+       The table has three column headers,
+       but the data row contains only two cells.
+       The "Owner" header has no corresponding data cell.
+  -->
   <table>
-    <caption>Header with no assigned data cell</caption>
+    <caption>ACT-R46 Failure</caption>
+
     <thead>
       <tr>
-        <th scope="col">Issue Type</th>
+        <th scope="col">Issue</th>
         <th scope="col">Status</th>
         <th scope="col">Owner</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>Colour contrast</td>
@@ -99,25 +125,35 @@
     </tbody>
   </table>
 
+
+  <!-- ========================= -->
+  <!-- ACT-R46 PASS -->
+  <!-- ========================= -->
+
   <h2>ACT-R46 Pass</h2>
 
-  <!-- ACT-R46 PASS:
-       Every th has one or more related data cells. -->
+  <!-- Pass:
+       Every column header has a corresponding
+       data cell in every row.
+  -->
   <table>
-    <caption>Headers with assigned data cells</caption>
+    <caption>ACT-R46 Pass</caption>
+
     <thead>
       <tr>
-        <th scope="col">Issue Type</th>
+        <th scope="col">Issue</th>
         <th scope="col">Status</th>
         <th scope="col">Owner</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>Colour contrast</td>
         <td>Open</td>
         <td>Arun</td>
       </tr>
+
       <tr>
         <td>Keyboard focus</td>
         <td>Fixed</td>
@@ -125,5 +161,7 @@
       </tr>
     </tbody>
   </table>
+
 </body>
 </html>
+```
