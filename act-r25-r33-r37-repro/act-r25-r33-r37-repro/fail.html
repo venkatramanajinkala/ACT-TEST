@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMP-0108 / AMP-0073 / AMP-0081 — FAIL repro</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    line-height: 1.4;
+  }
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+  section {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 24px 0;
+  }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.15em; margin-top: 0; }
+  .rule-id { font-family: monospace; background:#eee; padding:2px 6px; border-radius:4px; }
+  .ticket-id { font-family: monospace; background:#fdecea; color:#a3271e; padding:2px 6px; border-radius:4px; font-size: 0.85em; }
+  .note { font-size: 0.9em; color: #444; }
+</style>
+</head>
+<body>
+<main>
+  <h1>FAIL repro — ACT-R33, ACT-R37, ACT-R25</h1>
+  <p>Standalone reproduction pages for three ticketed findings. Each section below is intentionally broken to reproduce the reported behavior.</p>
+
+  <!-- ============================================================ -->
+  <section aria-labelledby="r33-heading">
+    <h2 id="r33-heading"><span class="rule-id">ACT-R33</span> Media alternative may not fully represent content <span class="ticket-id">AMP-0108</span></h2>
+    <!-- Ticket description: "The detected alternative for this media
+         element may not fully represent all its content. Verify that the
+         alternative is accurate, complete, and equivalent." Test method:
+         "Compare a video with its transcript. If the video shows an
+         important event that the transcript doesn't mention, flag it."
+         Expected result: FAIL — the transcript below omits the on-screen
+         "Session expires in 2 minutes" warning shown in the video. -->
+    <video controls width="480">
+      <source src="media/r33-demo-video.mp4" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+    <h3>Transcript</h3>
+    <p>Welcome to the new employee portal. Log in with your company credentials to get started.</p>
+    <p class="note">The transcript above does not mention the on-screen "Session expires in 2 minutes" warning shown between 0:04–0:07.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <section aria-labelledby="r37-heading">
+    <h2 id="r37-heading"><span class="rule-id">ACT-R37</span> Missing synchronized audio description <span class="ticket-id">AMP-0073</span></h2>
+    <!-- Ticket description: "Pre-recorded video must include a
+         synchronised audio description track (or an alternative version)
+         that describes important visual events not covered by the
+         existing audio." Test method: "Play a video without looking at
+         the screen. Important visual actions should be explained in the
+         audio description." Expected result: FAIL — narration only
+         introduces the topic; the on-screen "Toggles Email Alerts OFF"
+         action is never spoken and has no description track. -->
+    <video controls width="480">
+      <source src="media/r37-demo-video.mp4" type="video/mp4">
+      <track kind="captions" src="media/r37-demo-video-en.vtt" srclang="en" label="English" default>
+      Your browser does not support the video element.
+    </video>
+    <p class="note">Play this video without looking at the screen: the "Toggles Email Alerts OFF" action shown between 0:04–0:07 is completely missed. No audio description track is provided.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <section aria-labelledby="r25-heading">
+    <h2 id="r25-heading"><span class="rule-id">ACT-R25</span> Important visual information not conveyed by audio <span class="ticket-id">AMP-0081</span></h2>
+    <!-- Ticket description: "Pre-recorded video must include a
+         synchronized audio description track, or an equivalent
+         alternative version, for important visual information not
+         conveyed by the existing audio." Test method: "Watch a video
+         without looking at the screen. Important visual events should be
+         communicated through audio description or an equivalent
+         alternative." Expected result: FAIL — narration introduces the
+         topic generally; the specific "72% of goal reached" figure shown
+         on screen is never spoken and has no description track.
+         Note: per ticket AMP-0081/AMP-0073, R25 and R37 were flagged as
+         checking the same underlying condition (duplicate detection) when
+         both rules were run against the same real page. This repro keeps
+         them as separate, independently reproducible pages/videos so each
+         ticket can still be verified on its own. -->
+    <video controls width="480">
+      <source src="media/r25-demo-video.mp4" type="video/mp4">
+      <track kind="captions" src="media/r25-demo-video-en.vtt" srclang="en" label="English" default>
+      Your browser does not support the video element.
+    </video>
+    <p class="note">Watch this video without looking at the screen: the "72% of goal reached" figure shown between 0:04–0:07 is completely missed. No audio description track is provided.</p>
+  </section>
+
+</main>
+</body>
+</html>

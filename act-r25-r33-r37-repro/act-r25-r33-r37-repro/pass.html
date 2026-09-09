@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMP-0108 / AMP-0073 / AMP-0081 — PASS repro</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    line-height: 1.4;
+  }
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+  section {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 24px 0;
+  }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.15em; margin-top: 0; }
+  .rule-id { font-family: monospace; background:#eee; padding:2px 6px; border-radius:4px; }
+  .ticket-id { font-family: monospace; background:#e9f6ee; color:#1d6b3a; padding:2px 6px; border-radius:4px; font-size: 0.85em; }
+  .note { font-size: 0.9em; color: #444; }
+</style>
+</head>
+<body>
+<main>
+  <h1>PASS repro — ACT-R33, ACT-R37, ACT-R25</h1>
+  <p>Corrected versions of the same three scenarios, for side-by-side comparison against <a href="fail.html">fail.html</a>.</p>
+
+  <!-- ============================================================ -->
+  <section aria-labelledby="r33-heading">
+    <h2 id="r33-heading"><span class="rule-id">ACT-R33</span> Media alternative fully represents content <span class="ticket-id">AMP-0108</span></h2>
+    <!-- Expected result: PASS — same video, transcript now also describes
+         the on-screen "Session expires in 2 minutes" warning. -->
+    <video controls width="480">
+      <source src="media/r33-demo-video.mp4" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+    <h3>Transcript</h3>
+    <p>
+      Welcome to the new employee portal. Log in with your company credentials to get started.<br>
+      On screen, a warning appears: "Session expires in 2 minutes."
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <section aria-labelledby="r37-heading">
+    <h2 id="r37-heading"><span class="rule-id">ACT-R37</span> Synchronized audio description provided <span class="ticket-id">AMP-0073</span></h2>
+    <!-- Expected result: PASS — same video, now with a second
+         kind="descriptions" track narrating the toggle action during the
+         pause in the original narration. Play without looking at the
+         screen: the action is now communicated through the description
+         track. -->
+    <video controls width="480">
+      <source src="media/r37-demo-video.mp4" type="video/mp4">
+      <track kind="captions" src="media/r37-demo-video-en.vtt" srclang="en" label="English" default>
+      <track kind="descriptions" src="media/r37-demo-video-ad.vtt" srclang="en" label="Audio description">
+      Your browser does not support the video element.
+    </video>
+    <h3>Text alternative for video above</h3>
+    <p>
+      Let's look at how to configure your notification preferences.<br>
+      The presenter toggles Email Alerts off.
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <section aria-labelledby="r25-heading">
+    <h2 id="r25-heading"><span class="rule-id">ACT-R25</span> Important visual information conveyed by audio <span class="ticket-id">AMP-0081</span></h2>
+    <!-- Expected result: PASS — same video, now with a description track
+         narrating the "72% of goal reached" figure during the pause in
+         the original narration. Watch without looking at the screen: the
+         figure is now communicated through the description track. -->
+    <video controls width="480">
+      <source src="media/r25-demo-video.mp4" type="video/mp4">
+      <track kind="captions" src="media/r25-demo-video-en.vtt" srclang="en" label="English" default>
+      <track kind="descriptions" src="media/r25-demo-video-ad.vtt" srclang="en" label="Audio description">
+      Your browser does not support the video element.
+    </video>
+    <h3>Text alternative for video above</h3>
+    <p>
+      This chart shows our progress so far this year.<br>
+      The chart shows 72% of the goal has been reached.
+    </p>
+  </section>
+
+</main>
+</body>
+</html>

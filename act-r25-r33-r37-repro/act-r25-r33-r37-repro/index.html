@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACT-R33 / R37 / R25 — Repro Index</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 640px;
+    margin: 60px auto;
+    padding: 0 16px;
+    line-height: 1.5;
+    color: #111;
+  }
+  h1 { font-size: 1.5em; }
+  ul { padding-left: 1.2em; }
+  li { margin: 10px 0; }
+  a { color: #1a5fb4; }
+  table { border-collapse: collapse; width: 100%; margin-top: 30px; font-size: 0.9em; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+  .note { color: #555; font-size: 0.9em; margin-top: 30px; }
+</style>
+</head>
+<body>
+  <h1>ACT-R33 / R37 / R25 — Standalone Repro</h1>
+  <p>Minimal, self-contained reproduction pages for three ticketed findings, separate from the main fixture suite.</p>
+  <ul>
+    <li><a href="fail.html">fail.html</a> — R33, R37, R25 failing cases</li>
+    <li><a href="pass.html">pass.html</a> — corrected passing equivalents</li>
+    <li><a href="README.md">README.md</a> — ticket references and manual test steps</li>
+  </ul>
+
+  <table>
+    <thead>
+      <tr><th>Rule</th><th>Ticket</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ACT-R33</td><td>AMP-0108</td><td>Valid Issue</td></tr>
+      <tr><td>ACT-R37</td><td>AMP-0073</td><td>Duplicate + False Positive (see README)</td></tr>
+      <tr><td>ACT-R25</td><td>AMP-0081</td><td>Duplicate of R37 (see README)</td></tr>
+    </tbody>
+  </table>
+  <p class="note">See README.md for the original ticket findings this repro is based on.</p>
+</body>
+</html>
